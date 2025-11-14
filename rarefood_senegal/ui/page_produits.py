@@ -1,13 +1,16 @@
 import streamlit as st
-from rarefood_senegal.modules import product_storage, review_manager
-def run():
-    st.title("Catalogue des produits")
-    produits = product_storage.get_all_products()
-    for p in produits:
-        st.image(p["photo"], width=150)
-        st.markdown(f"**{p['nom']}** — {p['prix']} FCFA — {p['categorie']}")
-        if p["certifie"]:
-            st.success("✅ Certifié")
-        avis = review_manager.get_reviews(p["id"])
-        for a in avis:
-            st.markdown(f"- {a['note']}/5 : {a['commentaire']}")
+
+st.subheader("🛒 Catalogue des produits")
+
+produits = [
+    {"nom": "Mangue", "prix": 500, "image": "mangue.jpg"},
+    {"nom": "Citron", "prix": 300, "image": "citron.jpg"},
+    {"nom": "Gingembre", "prix": 400, "image": "gingembre.jpg"},
+    {"nom": "Papaye", "prix": 600, "image": "papaye.jpg"},
+    {"nom": "Tomate", "prix": 350, "image": "tomate.jpg"}
+]
+
+for p in produits:
+    st.image(f"rarefood_senegal/assets/images/{p['image']}", width=150)
+    st.write(f"**{p['nom']}** – 💰 {p['prix']} FCFA")
+    st.button(f"🧺 Ajouter {p['nom']} au panier")
