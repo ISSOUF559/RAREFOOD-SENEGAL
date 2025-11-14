@@ -1,7 +1,11 @@
 import streamlit as st
-from rarefood_senegal.modules import testimonial_manager
-def run():
-    st.title("Témoignages producteurs")
-    temoins = testimonial_manager.get_all()
-    for t in temoins:
-        st.markdown(f"**{t['nom']}** ({t['region']}) : {t['message']}")
+
+st.subheader("📣 Témoignages des producteurs")
+
+temoins = [
+    {"nom": "Amina", "message": "Grâce à RAREFOOD, mes produits atteignent plus de clients chaque semaine."},
+    {"nom": "Moussa", "message": "La certification m’a permis d’entrer dans de nouveaux marchés."}
+]
+
+for t in temoins:
+    st.write(f"👤 {t['nom']} : _{t['message']}_")
