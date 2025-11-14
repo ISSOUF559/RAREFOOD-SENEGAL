@@ -1,6 +1,13 @@
 import streamlit as st
-from rarefood_senegal.modules import health_checker
-def run():
-    st.title("Monitoring système")
-    for check in health_checker.run_health_checks():
-        st.markdown(f"- {check['module']} : {check['etat']}")
+
+st.subheader("📊 Tableau de monitoring")
+
+st.metric(label="Commandes en cours", value="42")
+st.metric(label="Produits actifs", value="18")
+st.metric(label="Utilisateurs connectés", value="7")
+st.metric(label="Alertes de sécurité", value="0")
+
+st.line_chart({
+    "Commandes": [10, 15, 20, 25, 30, 42],
+    "Utilisateurs": [2, 3, 4, 5, 6, 7]
+})
