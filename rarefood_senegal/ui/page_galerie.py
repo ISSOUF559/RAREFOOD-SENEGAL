@@ -1,8 +1,10 @@
 import streamlit as st
-from rarefood_senegal.modules import product_storage
-def run():
-    st.title("Galerie des produits certifiés")
-    produits = product_storage.get_certified_products()
-    for p in produits:
-        st.image(p["photo"], width=150)
-        st.markdown(f"**{p['nom']}** — {p['categorie']} — {p['region']}")
+
+st.subheader("🖼️ Galerie des produits")
+
+images = [
+    "mangue.jpg", "citron.jpg", "gingembre.jpg", "papaye.jpg", "tomate.jpg"
+]
+
+for img in images:
+    st.image(f"rarefood_senegal/assets/images/{img}", caption=img.split(".")[0].capitalize(), width=200)
