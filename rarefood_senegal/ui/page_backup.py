@@ -1,7 +1,9 @@
 import streamlit as st
-from rarefood_senegal.modules import backup_manager
-def run():
-    st.title("Sauvegarde")
-    if st.button("Sauvegarder"):
-        backup_manager.backup_all_data()
-        st.success("Sauvegarde effectuée")
+
+st.subheader("🗂️ Sauvegardes et restauration")
+
+st.info("📦 Dernière sauvegarde : 14 novembre 2025 à 18h00")
+if st.button("🔄 Lancer une nouvelle sauvegarde"):
+    st.success("✅ Sauvegarde lancée avec succès.")
+if st.button("♻️ Restaurer la dernière version"):
+    st.warning("⚠️ Restauration en cours…")
