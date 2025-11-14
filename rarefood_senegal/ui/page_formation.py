@@ -1,11 +1,12 @@
 import streamlit as st
-from rarefood_senegal.modules import formation_manager
-def run():
-    st.title("Formation")
-    email = st.text_input("Votre email")
-    if email:
-        modules = formation_manager.get_modules_for_user(email)
-        for m in modules:
-            if st.button(f"Valider : {m['titre']}"):
-                formation_manager.mark_completed(email, m["id"])
-                st.success(f"{m['titre']} validé")
+
+st.subheader("🎓 Formation des producteurs")
+
+st.markdown("**Module 1 : Hygiène alimentaire**")
+st.video("https://www.youtube.com/watch?v=example1")
+
+st.markdown("**Module 2 : Certification locale**")
+st.video("https://www.youtube.com/watch?v=example2")
+
+st.markdown("**Module 3 : Gestion des stocks**")
+st.video("https://www.youtube.com/watch?v=example3")
