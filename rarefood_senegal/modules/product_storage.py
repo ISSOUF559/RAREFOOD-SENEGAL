@@ -3,7 +3,7 @@ import uuid
 
 products = []
 
-def add_product(nom, prix, categorie, email, photo):
+def add_product(nom, prix, categorie, email, photo, region):
     produit = {
         "id": str(uuid.uuid4()),
         "nom": nom,
@@ -11,12 +11,17 @@ def add_product(nom, prix, categorie, email, photo):
         "categorie": categorie,
         "email": email,
         "photo": photo,
-        "certifie": False
+        "certifie": False,
+        "region": region
     }
     products.append(produit)
 
 def get_all_products():
     return products
+
+def get_certified_products():
+    return [p for p in products if p["certifie"]]
+
 
 # rarefood_senegal/modules/product_storage.py
 #import uuid
