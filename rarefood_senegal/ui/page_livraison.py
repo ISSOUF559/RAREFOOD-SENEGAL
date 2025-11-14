@@ -1,9 +1,9 @@
 import streamlit as st
-from rarefood_senegal.modules import delivery_tracker
-def run():
-    st.title("Suivi des livraisons")
-    email = st.text_input("Votre email")
-    if email:
-        livraisons = delivery_tracker.get_deliveries(email)
-        for l in livraisons:
-            st.markdown(f"- {l}")
+
+st.subheader("🚚 Suivi de commande")
+
+commande_id = st.text_input("🔎 Entrez votre numéro de commande")
+if commande_id:
+    st.success(f"📦 Commande {commande_id} en cours de livraison")
+    st.progress(70)
+    st.info("🕒 Estimée : livraison dans 2 jours")
