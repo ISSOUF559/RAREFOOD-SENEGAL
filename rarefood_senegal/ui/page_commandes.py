@@ -1,22 +1,28 @@
 import streamlit as st
-from rarefood_senegal.modules import order_storage, product_storage
-import rarefood_senegal.modules.captcha_engine as captcha_engine
 
-def run():
-    st.title("Passer une commande")
-    email = st.text_input("Votre email")
-    produits = product_storage.get_all_products()
-    selection = st.multiselect("Produits à commander", [p["nom"] for p in produits])
+if "panier" not in st.session_state:
+    st.session_state.panier = []
 
-    if "captcha_cmd" not in st.session_state:
-        st.session_state["captcha_cmd"] = captcha_engine.generer_question()
-    q = st.session_state["captcha_cmd"]
-    reponse = st.text_input(f"Combien font {q['a']} + {q['b']} ?")
+produits = [
+    {"nom": "Mangue", "prix": 500},
+    {"nom": "Citron", "prix": 300},
+    {"nom": "Gingembre", "prix": 400},
+    {"nom": "Papaye", "prix": 600},
+    {"nom": "Tomate", "prix": 350}
+]
 
-    if st.button("Valider la commande"):
-        if captcha_engine.verifier_reponse(q["attendu"], reponse):
-            order_storage.add_order(email, selection, "aujourd’hui")
-            st.success("Commande enregistrée ✅")
-            st.session_state["captcha_cmd"] = captcha_engine.generer_question()
-        else:
-            st.error("CAPTCHA incorrect. Veuillez réessayer.")
+st.subheader("🛒 Ajouter des produits au panier")
+for produit in produits:
+    if st.button(f"Ajouter {produit['nom']} ({produit['prix']} FCFA)"):
+        st.session_state.panier.append(produit)
+
+st.subheader("🧺 Votre panier")
+if st.session_state.panier:
+    total = sum(p["prix"] for p in st.session_state.panier)
+    for p in st.session_state.panier:
+        st.write(f"- {p['nom']} ({p['prix']} FCFA)")
+    st.success(f"💰 Total : {total} FCFA")
+    if st.button("🗑️ Vider le panier"):
+        st.session_state.panier = []
+else:
+    st.info("Votre panier est vide.")
