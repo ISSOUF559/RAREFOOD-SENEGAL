@@ -1,8 +1,14 @@
 import streamlit as st
-from rarefood_senegal.modules import translation_engine
-def run():
-    st.title("Traduction multilingue")
-    texte = st.text_area("Texte à traduire")
-    langue = st.selectbox("Langue", ["fr", "en", "ar", "sw", "km"])
-    if st.button("Traduire"):
-        st.markdown(translation_engine.translate(texte, langue))
+
+st.subheader("🌍 Interface multilingue")
+
+langue = st.selectbox("Choisissez votre langue :", ["Français", "Anglais", "Wolof", "Comorien"])
+
+if langue == "Français":
+    st.success("Interface en français activée.")
+elif langue == "Anglais":
+    st.success("English interface activated.")
+elif langue == "Wolof":
+    st.success("Jàmm rekk! Interface Wolof activée.")
+elif langue == "Comorien":
+    st.success("Karibu! Interface Comorienne activée.")
