@@ -1,0 +1,17 @@
+# rarefood_senegal/ui/page_produits.py
+import streamlit as st
+from rarefood_senegal.modules import product_storage, review_manager
+
+def run():
+    st.title("Catalogue des produits")
+    produits = product_storage.get_all_products()
+    for p in produits:
+        st.image(p["photo"], width=150)
+        st.subheader(p["nom"])
+        st.markdown(f"**Catégorie :** {p['categorie']}")
+        st.markdown(f"**Prix :** {p['prix']} FCFA")
+        st.markdown(f"**Certification :** {'✅' if p['certifie'] else '❌'}")
+        st.markdown("**Avis clients :**")
+        avis = review_manager.get_reviews(p["id"])
+        for a in avis:
+            st.markdown(f"- ⭐ {a['note']} — {a['commentaire']}")
