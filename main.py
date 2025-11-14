@@ -1,68 +1,47 @@
 import streamlit as st
 from rarefood_senegal.ui import (
-    page_accueil,
-    page_commandes,
     page_produits,
-    page_clients,
-    page_producteurs,
-    page_messagerie,
+    page_commandes,
     page_avis,
-    page_facturation,
-    page_certification,
+    page_livraison,
     page_ia,
-    page_monitoring,
-    page_notifications,
-    page_stock,
-    page_securite,
     page_recherche,
-    page_galerie,
-    page_impact,
-    page_admin,
-    page_backup,
-    page_temoin,
-    page_formation,
-    page_multilingue,
-    page_pilote,
-    page_profil,
-    page_livraison
+    page_profil
 )
 
-st.set_page_config(
-    page_title="RAREFOOD Sénégal",
-    page_icon="🍽️",
-    layout="wide"
-)
+st.set_page_config(page_title="RAREFOOD Sénégal", page_icon="🍽️", layout="wide")
 
-st.sidebar.title("📦 Menu principal")
-st.sidebar.markdown("🔐 Sécurité active : CAPTCHA artisanal + journal des échecs")
+st.markdown("<h1 style='text-align: center; color: #2E8B57;'>BIENVENUE CHEZ RAREFOOD</h1>", unsafe_allow_html=True)
 
-pages = {
-    "🏠 Accueil": page_accueil.run,
-    "📦 Commandes": page_commandes.run,
-    "🛒 Produits": page_produits.run,
-    "👥 Clients": page_clients.run,
-    "👨‍🌾 Producteurs": page_producteurs.run,
-    "💬 Messagerie": page_messagerie.run,
-    "⭐ Avis": page_avis.run,
-    "🧾 Facturation": page_facturation.run,
-    "🎓 Certification": page_certification.run,
-    "🤖 IA & Recommandation": page_ia.run,
-    "📊 Monitoring": page_monitoring.run,
-    "🔔 Notifications": page_notifications.run,
-    "📦 Stock": page_stock.run,
-    "🔐 Journal de sécurité": page_securite.run,
-    "🔍 Recherche sémantique": page_recherche.run,
-    "🖼️ Galerie": page_galerie.run,
-    "🌱 Impact local": page_impact.run,
-    "🛡️ Administration": page_admin.run,
-    "🗂️ Sauvegardes": page_backup.run,
-    "📣 Témoignages": page_temoin.run,
-    "🎓 Formation": page_formation.run,
-    "🌍 Multilingue": page_multilingue.run,
-    "🧭 Tableau pilote": page_pilote.run,
-    "👤 Profil utilisateur": page_profil.run,
-    "🚚 Livraison": page_livraison.run
-}
+menu = st.tabs([
+    "🛒 Produits",
+    "🧺 Panier",
+    "⭐ Avis",
+    "🚚 Suivi commande",
+    "🔍 Recherche",
+    "👤 Profil",
+    "🔑 Connexion",
+    "🆕 Créer un compte",
+    "❓ Mot de passe oublié",
+    "📍 Adresse",
+    "📞 Téléphone"
+])
 
-choix = st.sidebar.radio("Choisissez une page :", list(pages.keys()))
-pages[choix]()
+with menu[0]: page_produits.run()
+with menu[1]: page_commandes.run()
+with menu[2]: page_avis.run()
+with menu[3]: page_livraison.run()
+with menu[4]: page_recherche.run()
+with menu[5]: page_profil.run()
+with menu[6]: st.info("🔐 Formulaire de connexion à venir...")
+with menu[7]: st.info("🆕 Formulaire d'inscription à venir...")
+with menu[8]: st.info("❓ Fonction de récupération à venir...")
+with menu[9]: st.info("📍 Ajout d'adresse à venir...")
+with menu[10]: st.info("📞 Ajout de numéro à venir...")
+
+st.markdown("""
+    <div style='position: fixed; bottom: 20px; right: 20px; background-color: #f0f0f0; padding: 10px; border-radius: 10px; box-shadow: 2px 2px 5px gray;'>
+        🤖 <strong>Agent IA</strong><br>
+        <em>Posez-moi une question sur les produits, les commandes ou les recommandations !</em>
+    </div>
+""", unsafe_allow_html=True)
