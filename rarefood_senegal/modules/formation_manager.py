@@ -26,3 +26,4 @@ def mark_completed(email, module_id):
     for m in validation[email]:
         if m["id"] == module_id:
             m["etat"] = "validé"
+
